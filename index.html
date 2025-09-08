@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btnOn">On</button>
+    <video src="" autoplay playsinline id="video"></video>
+    <script>
+        document.getElementById('btnOn').addEventListener('click',async ()=>{
+                const stream= await navigator.mediaDevices.getUserMedia({video:true});
+                const vid=document.getElementById('video');
+                vid.srcObject=stream;
+        })
+    </script>
+</body>
+</html>
