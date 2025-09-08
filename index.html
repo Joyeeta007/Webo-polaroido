@@ -14,17 +14,28 @@
     <canvas id="myCanvas"></canvas>
     <script>
         let stream;
+        let imgArr = [];
         document.getElementById('btnOn').addEventListener('click', async () => {
             stream = await navigator.mediaDevices.getUserMedia({ video: true });
             const vid = document.getElementById('video');
             vid.srcObject = stream;
         })
+        let count=0;
         document.getElementById('capture').addEventListener('click', async () => {
             let canvas = document.getElementById('myCanvas');
             let ctx = canvas.getContext("2d");
             const vid = document.getElementById('video');
-            ctx.drawImage(vid,0,0, canvas.width, canvas.height);
+            ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
 
+            const imgData= canvas.toDataURL('image/jpeg');
+            if(imgArr.length <= 3){
+                imgArr.push(imgData);
+                console.log(imgArr);
+            }
+            else{
+                console.log('STOPOOOO');
+            }
+            
         })
 
     </script>
