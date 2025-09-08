@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <button id="btnOn">On</button>
     <video src="" autoplay playsinline id="video"></video>
+    <button id="capture">Capture</button>
+    <canvas id="myCanvas"></canvas>
     <script>
-        document.getElementById('btnOn').addEventListener('click',async ()=>{
-                const stream= await navigator.mediaDevices.getUserMedia({video:true});
-                const vid=document.getElementById('video');
-                vid.srcObject=stream;
+        let stream;
+        document.getElementById('btnOn').addEventListener('click', async () => {
+            stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const vid = document.getElementById('video');
+            vid.srcObject = stream;
         })
+        document.getElementById('capture').addEventListener('click', async () => {
+            let canvas = document.getElementById('myCanvas');
+            let ctx = canvas.getContext("2d");
+            const vid = document.getElementById('video');
+            ctx.drawImage(vid,0,0, canvas.width, canvas.height);
+
+        })
+
     </script>
 </body>
+
 </html>
